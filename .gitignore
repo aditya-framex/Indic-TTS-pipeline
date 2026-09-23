@@ -1,0 +1,86 @@
+# Deny everything by default, then explicitly allow what we want
+/*
+
+# Allow root-level files
+!.gitignore
+!SETUP.md
+!README.md
+!requirements.txt
+!*.py
+!*.txt
+
+# Allow project folders (with all their contents)
+!IndicF5/
+!IndicF5/**
+!IndicTrans2/
+!IndicTrans2/**
+
+# Allow the one notebook we're keeping
+!IndicTTS.ipynb
+
+# --- Everything below stays excluded even if matched above ---
+
+# Large/generated models & packages
+models/
+indicf5_package_source/
+*-env/
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# Generated data & caches
+.cache/
+__pycache__/
+*.pyc
+eval_outputs_*/
+eval_outputs_*.zip
+nltk_data/
+uploads/
+pipeline_output/
+voices/
+.ipynb_checkpoints/
+
+# Media test files
+*.mp3
+*.mp4
+*.wav
+
+# Excluded notebooks
+indicf5_final.ipynb
+indicf5_test.ipynb
+trying_conformer.ipynb
+trying_conformer_BACKUP.ipynb
+final_indic_conformer.py
+
+# Secrets
+*.env
+.env
+*.pem
+*.key
+id_rsa*
+
+# System dirs (belt-and-suspenders, /* already blocks these)
+.aws/
+.ssh/
+.gnupg/
+.config/
+.copilot/
+.dotnet/
+.local/
+.nv/
+.triton/
+.vscode-server/
+.ipython/
+.jupyter/
+.bash_history
+.bashrc
+.profile
+BUILD_FROM_SOURCE_PACKAGES_LICENCES
+LINUX_PACKAGES_LICENSES
+LINUX_PACKAGES_LIST
+OSSNvidiaDriver_v595.91.07_license.txt
+PYTHON_PACKAGES_LICENSES
+THIRD_PARTY_SOURCE_CODE_URLS
+nvidia-acknowledgements/
+gds-nvidia-fs/
