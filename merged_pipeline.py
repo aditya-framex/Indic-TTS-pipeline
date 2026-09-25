@@ -1,18 +1,5 @@
-# merged_pipeline.py
-#
-# ONE RUN = both codes, in order:
-#   STAGE 1  auto_clip_pipeline.py  (mp4 -> audio.mp3)         -- code unchanged
-#   STAGE 2  IndicF5 TTS notebook   (audio.mp3 -> cloned wavs)  -- code unchanged
-#
-# Run:  python merged_pipeline.py
-#
-# Only notebook-specific lines were touched; each one is marked "MERGE NOTE".
-"""
-auto_clip_pipeline.py
 
-Fully automated pipeline that takes a video (mp4, mkv, etc.) and produces
-a single high-quality 8-10s mono MP3 clip of a target speaker's voice,
-suitable as a voice-cloning / TTS reference sample.
+"""
 
 Pipeline stages
 ----------------
@@ -29,28 +16,6 @@ Pipeline stages
                               highest scoring one
 6. Export                  -> ffmpeg slice -> MP3
 
-Usage
------
-Interactive mode (just run it, no flags):
-
-    python auto_clip_pipeline.py
-
-    It will scan the current directory and ./uploads/ for video and audio
-    files and let you pick, or tell you where to `scp` a file in from your
-    laptop, then ask for an output filename. Output is always MP3.
-
-Scripted / automation mode (for batch runs, cron, etc.):
-
-    python auto_clip_pipeline.py \
-        --input movie.mp4 \
-        --reference reference_voice.wav \
-        --out clip.mp3 \
-        --min-dur 8 --max-dur 10
-
-If you don't have a clean reference sample of the target speaker yet,
-run once with --diarize-only to dump all speaker clusters, listen to a
-sample from each, then reuse the best one as your --reference for every
-future video.
 
 Install
 -------
@@ -61,8 +26,7 @@ Install
     pip install pyannote.audio
 """
 
-# MERGE NOTE: these two lines came from the first notebook cell. They must be set
-# before transformers is imported, so they sit at the very top of the merged file.
+
 import os
 os.environ["HF_HUB_OFFLINE"] = "1"
 os.environ["TRANSFORMERS_OFFLINE"] = "1"
@@ -476,20 +440,14 @@ def main():
 
     print("Done.")
 
-
-# MERGE NOTE: the original ended with `if __name__ == "__main__": main()`.
-# In the merged file, stage 1 simply runs here. If it fails (or finds no usable
-# window) it raises / calls sys.exit(1), so stage 2 never starts on a missing or
-# stale audio.mp3.
 main()
 
 
-# ##########################################################################
-# STAGE 2 -- IndicF5 TTS notebook code (unchanged, cells in original order)
-# ##########################################################################
 
-# MERGE NOTE: notebook-only `%pip install ...` lines removed (IPython magics are
-# invalid syntax in a .py file). They are one-time environment setup; run once:
+# STAGE 2 -- IndicF5 TTS notebook code 
+
+
+# (IPython magics are invalid syntax in a .py file). They are one-time environment setup; run once:
 #   pip install transformers==4.49.0 accelerate==0.33.0
 #   pip install /home/ubuntu/indicf5_package_source
 #   pip install soundfile jiwer openai-whisper
