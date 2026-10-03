@@ -6,11 +6,15 @@ outputs (see .gitignore). To get the project running after cloning:
 
 To get the project running after cloning:
 
-1. Set up the Python environment:
+1. Get the models folder:
+   - Ask the project owner for the `models/` folder directly
+     (transferred via drive/USB/direct copy — not downloaded from
+     Hugging Face), and place it in the project root.
+
+2. Set up the Python environment:
+   
    python3 -m venv indicf5-env
    source indicf5-env/bin/activate
+   
    pip install -r requirements.txt
    pip install ./IndicF5
-
-2. Download the required models:
-   python3 allmod_down.py
