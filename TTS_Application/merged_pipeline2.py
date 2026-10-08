@@ -255,10 +255,10 @@ def export_audio(video_or_wav_path: str, seg: Segment, out_path: str) -> None:
     codec_args = ["-c:a", "libmp3lame", "-q:a", "2"]
     cmd = [
         "ffmpeg", "-y",
-        "-i", video_or_wav_path,
         "-ss", f"{seg.start:.3f}",
         "-t", f"{seg.duration:.3f}",
-        "-ac", "1", "-ar", "44100",
+        "-i", video_or_wav_path,
+        "-vn", "-ac", "1", "-ar", "44100",
         *codec_args,
         out_path,
     ]
