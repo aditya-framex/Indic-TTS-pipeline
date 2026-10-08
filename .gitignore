@@ -85,3 +85,12 @@ THIRD_PARTY_SOURCE_CODE_URLS
 nvidia-acknowledgements/
 gds-nvidia-fs/
 mp3_extract2.py
+
+# --- TTS service (TTS_Application): only these files are pushed ---
+!TTS_Application/
+TTS_Application/*
+!TTS_Application/tts_service.py
+!TTS_Application/merged_pipeline2.py
+!TTS_Application/dub.sh
+!TTS_Application/requirements-service.txt
+requirements-mac.txt
